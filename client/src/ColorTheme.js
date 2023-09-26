@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useLayoutEffect } from "react";
 const ThemeContext = createContext();
 
 const ThemeProvider = ({ children }) => {
-	const initialTheme = () => localStorage.getItem("TODOSTODO_THEME");
+	const initialTheme = () => localStorage.getItem("TODOSTODO_THEME") || "light";
 
 	const [theme, setTheme] = useState(initialTheme);
 
