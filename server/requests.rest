@@ -1,0 +1,26 @@
+GET http://localhost:8080/todos
+
+###
+
+POST http://localhost:8080/todo/new
+Content-Type: application/json
+
+{
+	"text": "Build todo app."
+}
+
+###
+
+DELETE http://localhost:8080/todo/delete/6508faf7db4736c5fdd0766d
+
+###
+
+PUT http://localhost:8080/todo/complete/6508ff9d614bdea82e009dfd
+
+###
+PUT http://localhost:8080/todo/edit/650bacf3e26c303a47a1db0f
+Content-Type: application/json
+
+{
+	"text": "Deploy todo app."
+}

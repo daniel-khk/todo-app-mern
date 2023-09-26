@@ -1,0 +1,13 @@
+.emptyPage h3 {
+	font-family: var(--font-jost);
+	font-style: italic;
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--color-primary);
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	text-align: center;
+}

@@ -1,0 +1,46 @@
+.container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	position: relative;
+}
+
+.addButton {
+	padding: 0.4rem;
+	border-radius: 9999px;
+	stroke: var(--color-bg);
+	background-color: var(--color-primary);
+	box-shadow: 0 0 12px rgba(var(--color-primary-rgb), 0.6);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	bottom: 2.6rem;
+	transition: 0.4s ease;
+}
+
+.addButton:hover {
+	stroke: var(--color-text);
+}
+
+
+@media screen and (max-width : 991px) {
+	.addButton:hover {
+		stroke: var(--color-bg);
+	}
+}
+
+@media screen and (max-width : 575px) {
+	.addButton {
+		margin-right: 0.8rem;
+	}
+}
+
+@media screen and (max-width : 480px) {
+	.addButton {
+		bottom: 1.2rem;
+		margin-right: 0.4rem;
+	}
+}

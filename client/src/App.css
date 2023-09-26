@@ -1,0 +1,53 @@
+.App {
+	margin: 0 auto;
+	padding: 10px 1.6rem 8.6rem;
+	max-width: 768px;
+}
+
+.main-title {
+	font-size: 3rem;
+	text-transform: capitalize;
+	margin: 1rem 0;
+	font-weight: 600;
+	font-family: var(--font-jost);
+}
+
+.page-title {
+	font-size: 1rem;
+	font-weight: 600;
+	text-transform: capitalize;
+}
+
+.wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 0.4rem;
+	margin-bottom: 0.8rem;
+}
+
+@media screen and (max-width : 575px) {
+	.App {
+		padding: 10px 1rem 8.6rem;
+	}
+}
+
+@media screen and (max-width : 480px) {
+	.App {
+		padding: 10px 1rem 6.8rem;
+	}
+
+	.main-title {
+		font-size: 2.8rem;
+		margin: 0.8rem 0;
+	}
+
+	.page-title {
+		font-size: 0.875rem;
+	}
+
+	.wrapper {
+		padding: 0 0.2rem;
+		margin-bottom: 0.8rem;
+	}
+}

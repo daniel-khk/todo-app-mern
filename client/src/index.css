@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--font-mont: 'Montserrat', sans-serif;
+	--font-jost: 'Jost', sans-serif;
+}
+
+.light-mode {
+	--color-bg: #393b3d;
+	--color-primary: #7eddd3;
+	--color-secondary: #d36a7b;
+	--color-dark: #242527;
+	--color-light: #eeeeee;
+	--color-text: #e3e6eb;
+	--color-warning: #d36a7b;
+	--color-cancel: #565759;
+	--color-primary-rgb: 126, 221, 211;
+}
+
+.dark-mode {
+	--color-bg: #2b2256;
+	--color-primary: #b82356;
+	--color-secondary: #009eaf;
+	--color-dark: #1e173b;
+	--color-light: #eeeeee;
+	--color-text: #dbe7e8;
+	--color-warning: #009eaf;
+	--color-cancel: #4e4869;
+	--color-primary-rgb: 184, 35, 86;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	line-height: 1.2em;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	min-width: 320px;
+	background-color: var(--color-bg);
+	color: var(--color-text);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+#top-border {
+	height: 10px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: var(--color-primary);
+	z-index: 97;
+}

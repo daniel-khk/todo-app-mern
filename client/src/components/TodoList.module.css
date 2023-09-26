@@ -1,0 +1,149 @@
+.todo {
+	background-color: var(--color-dark);
+	padding: 1.4rem 1.2rem;
+	border-radius: 14px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	margin-bottom: 1rem;
+	cursor: pointer;
+	position: relative;
+	transition: 0.4s ease;
+}
+
+.todo:hover {
+	background-color: var(--color-primary);
+	color: var(--color-dark);
+}
+
+.todo .checkbox {
+	padding: 0.5rem;
+	margin-right: 1rem;
+	border-radius: 9999px;
+	background-color: var(--color-primary);
+	transition: 0.4s ease;
+}
+
+.todo:hover .checkbox {
+	background-color: var(--color-dark);
+}
+
+.todo .text {
+	width: 100%;
+	word-wrap: break-word;
+	overflow: hidden;
+	margin-right: 2.4rem;
+	line-height: 1.6em;
+}
+
+.todo .actions {
+	display: flex;
+	justify-self: center;
+	align-items: center;
+	gap: 1.4rem;
+	stroke: var(--color-primary);
+	margin-right: 0.4rem;
+}
+
+.todo:hover .actions {
+	stroke: var(--color-dark);
+}
+
+.icon {
+	cursor: pointer;
+	transition: 0.4s ease;
+}
+
+.icon:hover {
+	opacity: 0.4;
+}
+
+.todo.isComplete {
+	opacity: 0.4;
+}
+
+.todo.isComplete:hover {
+	background-color: var(--color-dark);
+	color: var(--color-text);
+}
+
+.todo.isComplete .checkbox {
+	background-color: var(--color-secondary);
+}
+
+.todo.isComplete:hover .checkbox {
+	background-color: var(--color-secondary);
+}
+
+.todo.isComplete .actions {
+	stroke: var(--color-secondary);
+}
+
+.todo.isComplete:hover .actions {
+	stroke: var(--color-secondary);
+}
+
+.todo.isComplete .text {
+	text-decoration: line-through;
+}
+
+.todo.isComplete:hover .text {
+	text-decoration: line-through;
+}
+
+
+@media screen and (max-width : 991px) {
+	.todo:hover {
+		background-color: var(--color-dark);
+		color: var(--color-text);
+	}
+
+	.todo:hover .checkbox {
+		background-color: var(--color-primary);
+	}
+
+	.todo:hover .actions {
+		stroke: var(--color-primary);
+	}
+
+	.icon:hover {
+		opacity: 1;
+	}
+}
+
+@media screen and (max-width : 575px) {
+	.todo .text {
+		margin-right: 1.4rem;
+	}
+
+	.todo .actions {
+		gap: 1rem;
+		margin-right: 0.2rem;
+	}	
+}
+
+@media screen and (max-width : 480px) {
+	.todo {
+		padding: 1rem 0.8rem;
+		border-radius: 12px;
+	}
+
+	.todo .checkbox {
+		padding: 0.4rem;
+		margin-right: 0.6rem;
+	}
+
+	.todo .text {
+		font-size: 0.875rem;
+		margin-right: 0.8rem;
+	}
+
+	.todo .actions {
+		gap: 0.8rem;
+	}
+
+	.icon svg {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+}

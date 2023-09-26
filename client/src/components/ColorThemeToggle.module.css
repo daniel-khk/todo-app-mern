@@ -1,0 +1,30 @@
+.colorToggle {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 0.2em;
+	font-size: 0.875rem;
+	cursor: pointer;
+	padding: 0.2em 0;
+	stroke: var(--color-text);
+}
+
+.colorToggle:hover {
+	color: var(--color-primary);
+	stroke: var(--color-primary);
+}
+
+
+@media screen and (max-width : 991px) {
+	.colorToggle {
+		color: var(--color-primary);
+		stroke: var(--color-primary);
+	}
+}
+
+@media screen and (max-width : 480px) {
+	.colorToggle {
+		font-size: 0.75rem;
+		padding: 0;
+	}
+}
