@@ -13,13 +13,7 @@ const TodoSchema = new mongoose.Schema({
 		type: Boolean,
 		default: false
 	},
-	timestamp: {
-		type: String,
-		default: function () {
-			return new Date().toISOString();
-		}
-	}
-})
+}, { timestamps: true })
 
 const TodoModel = mongoose.model('Todo', TodoSchema);
 

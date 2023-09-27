@@ -80,7 +80,7 @@
 @media screen and (max-width : 480px) {
 	.modal {
 		max-width: 330px;
-		padding: 1.4rem 1.6rem;
+		padding: 2rem 1.6rem;
 		border-radius: 12px;
 	}
 

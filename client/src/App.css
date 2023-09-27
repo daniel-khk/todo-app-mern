@@ -1,6 +1,6 @@
 .App {
 	margin: 0 auto;
-	padding: 10px 1.6rem 8.6rem;
+	padding: 10px 1.6rem 12rem;
 	max-width: 768px;
 }
 
@@ -28,13 +28,13 @@
 
 @media screen and (max-width : 575px) {
 	.App {
-		padding: 10px 1rem 8.6rem;
+		padding: 10px 1rem 11rem;
 	}
 }
 
 @media screen and (max-width : 480px) {
 	.App {
-		padding: 10px 1rem 6.8rem;
+		padding: 10px 1rem 9rem;
 	}
 
 	.main-title {

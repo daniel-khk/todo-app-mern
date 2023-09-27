@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './TodoList.module.css';
 import { setTodos } from '../store/todosSlice';
 import { openModal, setModalType, setTodoId, openDelete } from '../store/inputModalSlice';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import InputModal from './InputModal';
 import DeleteModal from './DeleteModal';
 import EmptyPage from './EmptyPage';
@@ -14,15 +14,33 @@ function TodoList() {
 	const todos = useSelector((state) => state.todos.todos);
 	const { isInputModalOpen, inputText, isDeleteOpen } = useSelector(state => state.input);
 
+	// Function to define the sort order of todo items
+	const sortOrder = (a, b) => {
+		if (a.complete === false && b.complete === true) {
+			return -1; // Incomplete todos come before complete todos
+		} else if (a.complete === true && b.complete === false) {
+			return 1; // Complete todos come after incomplete todos
+		} else if (a.complete === false && b.complete === false) {
+			return a._id - b._id; // Sort by _id for incomplete todos
+		} else if (a.complete === true && b.complete === true) {
+			return new Date(a.updatedAt) - new Date(b.updatedAt); // Sort by updatedAt for complete todos
+		}
+	}
+
 	// Function to fetch todos from the server
 	const getTodos = async () => {
 		try {
 			const res = await fetch(`${serverUrl}/todos`, { method: "GET" });
+
 			if (!res.ok) {
 				console.log("getTodos() api fetch error");
 				return;
 			}
+			
 			const data = await res.json();
+
+			data.sort((a, b) => sortOrder(a, b));
+
 			dispatch(setTodos(data));
 		} catch (error) {
 			console.log("getTodo() catch error", error);
@@ -33,36 +51,26 @@ function TodoList() {
 	const completeTodo = async (id) => {
 		try {
 			const res = await fetch(`${serverUrl}/todo/complete/` + id, { method: "PUT" });
+
 			if (!res.ok) {
 				console.log("completeTodo() api fetch error");
 				return;
 			}
+
 			const data = await res.json();
+
 			let updatedTodos = (todos?.map((todo) => {
 				if (todo._id === data._id) {
 					return {
 						...todo,
-						complete: data.complete
+						complete: data.complete,
+						updatedAt: data.updatedAt
 					}
 				}
 				return todo;
 			}));
 
-			// Sort todos with uncompleted tasks listed first
-			if (data.complete === false) {
-				const notCompletedTodos = updatedTodos.filter((todo) => todo.complete === false);
-				notCompletedTodos.sort((a, b) => a._id - b._id);
-				const completedTodos = updatedTodos.filter(todo => !notCompletedTodos.includes(todo));
-				const sortedTodos = notCompletedTodos.concat(completedTodos);
-				updatedTodos = sortedTodos;
-			}
-			// Move completed tasks to the end of the list
-			else if (data.complete === true) {
-				const todoIndex = updatedTodos.findIndex((todo) => todo._id === data._id);
-				const temp = updatedTodos[todoIndex];
-				updatedTodos.splice(todoIndex, 1);
-				updatedTodos.push(temp);
-			}
+			updatedTodos.sort((a, b) => sortOrder(a, b));
 
 			dispatch(setTodos(updatedTodos));
 		} catch (error) {
@@ -74,12 +82,16 @@ function TodoList() {
 	const deleteTodo = async (id) => {
 		try {
 			const res = await fetch(`${serverUrl}/todo/delete/` + id, { method: "DELETE" });
+			
 			if (!res.ok) {
 				console.log("deleteTodo() api fetch error");
 				return;
 			}
+
 			const data = await res.json();
+
 			const updatedTodos = todos.filter((todo) => todo._id !== data._id);
+
 			dispatch(setTodos(updatedTodos));
 		} catch (error) {
 			console.log("deleteTodo() catch error", error);
@@ -98,11 +110,14 @@ function TodoList() {
 					text: inputText
 				})
 			});
+
 			if (!res.ok) {
 				console.log("editTodo() api fetch error");
 				return;
 			}
+			
 			const data = await res.json();
+
 			const updatedTodos = (todos?.map((todo) => {
 				if (todo._id === data._id) {
 					return {
@@ -112,6 +127,7 @@ function TodoList() {
 				}
 				return todo;
 			}));
+
 			dispatch(setTodos(updatedTodos));
 		} catch (error) {
 			console.log("editTodo() catch error", error);
@@ -130,14 +146,17 @@ function TodoList() {
 					text: inputText
 				})
 			});
+
 			if (!res.ok) {
 				console.log("deleteTodo() api fetch error");
 				return;
 			}
+
 			const data = await res.json();
+
 			dispatch(setTodos([...todos, data]));
 		} catch (error) {
-			console.log(error);
+			console.log("addTodo() catch error", error);
 		}
 	}
 
@@ -145,7 +164,7 @@ function TodoList() {
 		getTodos();
 	}, [])
 
-	
+
 	return (
 		<section className={styles.todoList}>
 			{todos.length === 0 && <EmptyPage />}

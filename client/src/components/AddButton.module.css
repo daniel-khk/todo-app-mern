@@ -32,15 +32,14 @@
 	}
 }
 
-@media screen and (max-width : 575px) {
+@media screen and (max-width : 768px) {
 	.addButton {
-		margin-right: 0.8rem;
+		margin-right: 1rem;
 	}
 }
 
 @media screen and (max-width : 480px) {
 	.addButton {
-		bottom: 1.2rem;
-		margin-right: 0.4rem;
+		bottom: 2rem;
 	}
 }
